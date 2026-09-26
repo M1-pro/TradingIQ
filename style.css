@@ -8,11 +8,15 @@ body {
     background: #0b0f14;
     color: #e8edf3;
     font-family: Arial, sans-serif;
-    overflow-x: hidden;
+}
+
+button,
+select {
+    font: inherit;
 }
 
 button {
-    border: none;
+    border: 0;
     cursor: pointer;
     color: inherit;
 }
@@ -21,10 +25,10 @@ button {
     height: 64px;
     display: flex;
     align-items: center;
+    gap: 20px;
     padding: 0 18px;
     background: #11161d;
     border-bottom: 1px solid #242b35;
-    gap: 25px;
 }
 
 .brand {
@@ -40,29 +44,29 @@ button {
     width: 36px;
     height: 36px;
     border-radius: 9px;
+    background: #1f8cff;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #1f8cff;
-    font-size: 14px;
 }
 
-.market-selector button {
+#symbolSelect {
     background: #181e26;
-    padding: 10px 16px;
+    color: white;
+    border: 1px solid #2a3440;
     border-radius: 7px;
+    padding: 9px 14px;
 }
 
 .top-actions {
     margin-left: auto;
     display: flex;
-    align-items: center;
     gap: 8px;
 }
 
 .top-actions button {
     background: transparent;
-    padding: 9px;
+    padding: 8px;
 }
 
 .top-actions .login {
@@ -80,19 +84,18 @@ button {
 .sidebar {
     background: #0f141b;
     border-right: 1px solid #242b35;
-    padding-top: 12px;
 }
 
 .side-item {
     width: 100%;
     height: 72px;
     background: transparent;
+    color: #8994a3;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    color: #8994a3;
+    gap: 5px;
 }
 
 .side-item span {
@@ -151,20 +154,19 @@ button {
     background: #11161d;
     border: 1px solid #242b35;
     padding: 5px;
-    border-radius: 7px 7px 0 0;
 }
 
 .toolbar button {
     background: transparent;
+    color: #9aa5b4;
     padding: 7px 10px;
     border-radius: 5px;
-    color: #9aa5b4;
 }
 
 .toolbar button:hover,
 .toolbar .selected {
     background: #202a36;
-    color: #fff;
+    color: white;
 }
 
 .toolbar-space {
@@ -173,14 +175,36 @@ button {
 
 .chart-container {
     height: 500px;
-    background: #0b0f14;
     border: 1px solid #242b35;
-    border-top: none;
+    border-top: 0;
 }
 
 #chart {
     width: 100%;
     height: 100%;
+}
+
+.indicator-panel {
+    margin-top: 10px;
+    background: #0b0f14;
+    border: 1px solid #242b35;
+}
+
+.indicator-title {
+    height: 32px;
+    padding: 7px 12px;
+    display: flex;
+    justify-content: space-between;
+    color: #9aa5b4;
+    font-size: 12px;
+}
+
+#rsiChart {
+    height: 150px;
+}
+
+#macdChart {
+    height: 150px;
 }
 
 .bottom-panel {
@@ -224,8 +248,8 @@ button {
 
 .ai-title {
     display: flex;
-    align-items: center;
     gap: 8px;
+    align-items: center;
 }
 
 .ai-card p {
@@ -238,6 +262,7 @@ button {
     background: #1f8cff;
     padding: 10px 15px;
     border-radius: 6px;
+    color: white;
 }
 
 .watchlist {
@@ -251,23 +276,24 @@ button {
 }
 
 .watch-item {
+    width: 100%;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+    background: transparent;
     padding: 14px 5px;
     border-bottom: 1px solid #202630;
+    text-align: left;
 }
 
 .watch-item strong {
     display: block;
-    font-size: 14px;
 }
 
 .watch-item small {
     display: block;
     color: #727e8d;
     margin-top: 4px;
-    font-size: 11px;
 }
 
 @media (max-width: 900px) {
@@ -280,18 +306,6 @@ button {
         display: none;
     }
 
-    .brand {
-        min-width: auto;
-    }
-
-    .brand span {
-        display: none;
-    }
-
-    .chart-container {
-        height: 430px;
-    }
-
     .bottom-panel {
         grid-template-columns: 1fr;
     }
@@ -301,25 +315,31 @@ button {
 
     .topbar {
         padding: 0 10px;
-        gap: 10px;
+        gap: 8px;
     }
 
-    .market-selector {
+    .brand {
+        min-width: auto;
+    }
+
+    .brand span {
+        display: none;
+    }
+
+    .top-actions {
+        gap: 2px;
+    }
+
+    .top-actions button:not(.login) {
         display: none;
     }
 
     .main {
-        padding: 10px;
+        padding: 8px;
     }
 
-    .market-header {
-        align-items: flex-start;
-    }
-
-    .price {
-        flex-direction: column;
-        align-items: flex-end;
-        gap: 3px;
+    .chart-container {
+        height: 360px;
     }
 
     .toolbar {
@@ -328,10 +348,6 @@ button {
 
     .toolbar button {
         white-space: nowrap;
-    }
-
-    .chart-container {
-        height: 360px;
     }
 
     .stats {

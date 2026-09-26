@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>TradingIQ</title>
 
-    <title>TradingIQ</title>
-
-    <link rel="stylesheet" href="style.css">
-
-    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+<script src="https://unpkg.com/lightweight-charts@5.0.0/dist/lightweight-charts.standalone.production.js"></script>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -20,9 +18,12 @@
         <span>TradingIQ</span>
     </div>
 
-    <div class="market-selector">
-        <button>BTC / USD ▾</button>
-    </div>
+    <select id="symbolSelect">
+        <option value="BTCUSD">BTC/USD</option>
+        <option value="ETHUSD">ETH/USD</option>
+        <option value="XAUUSD">XAU/USD</option>
+        <option value="EURUSD">EUR/USD</option>
+    </select>
 
     <div class="top-actions">
         <button>🔔</button>
@@ -34,167 +35,166 @@
 
 <div class="layout">
 
-    <aside class="sidebar">
+<aside class="sidebar">
 
-        <button class="side-item active">
-            📊
-            <span>Chart</span>
-        </button>
+    <button class="side-item active">📊<span>Chart</span></button>
+    <button class="side-item">⭐<span>Watchlist</span></button>
+    <button class="side-item">🔔<span>Alerts</span></button>
+    <button class="side-item">🤖<span>AI</span></button>
+    <button class="side-item">🧪<span>Backtest</span></button>
+    <button class="side-item">💼<span>Portfolio</span></button>
 
-        <button class="side-item">
-            ⭐
-            <span>Watchlist</span>
-        </button>
+</aside>
 
-        <button class="side-item">
-            🔔
-            <span>Alerts</span>
-        </button>
+<main class="main">
 
-        <button class="side-item">
-            🤖
-            <span>AI</span>
-        </button>
+    <div class="market-header">
 
-        <button class="side-item">
-            🧪
-            <span>Backtest</span>
-        </button>
-
-        <button class="side-item">
-            💼
-            <span>Portfolio</span>
-        </button>
-
-    </aside>
-
-    <main class="main">
-
-        <div class="market-header">
-
-            <div>
-                <h2>BTC/USD</h2>
-                <span class="market-status">Crypto • Demo Market</span>
-            </div>
-
-            <div class="price">
-                <strong id="price">$67,250.00</strong>
-                <span class="positive">+2.34%</span>
-            </div>
-
+        <div>
+            <h2 id="symbolTitle">BTC/USD</h2>
+            <span id="marketStatus">Demo Market</span>
         </div>
 
-        <div class="toolbar">
-
-            <button>1m</button>
-            <button>5m</button>
-            <button class="selected">15m</button>
-            <button>1H</button>
-            <button>4H</button>
-            <button>1D</button>
-            <button>1W</button>
-
-            <div class="toolbar-space"></div>
-
-            <button>Indicators</button>
-            <button>Draw</button>
-
+        <div class="price">
+            <strong id="price">$67,250.00</strong>
+            <span id="change" class="positive">+2.34%</span>
         </div>
 
-        <section class="chart-container">
-            <div id="chart"></div>
-        </section>
+    </div>
 
-        <section class="bottom-panel">
+    <div class="toolbar">
 
-            <div class="panel-card">
+        <button data-timeframe="1m">1m</button>
+        <button data-timeframe="5m">5m</button>
+        <button data-timeframe="15m" class="selected">15m</button>
+        <button data-timeframe="1H">1H</button>
+        <button data-timeframe="4H">4H</button>
+        <button data-timeframe="1D">1D</button>
+        <button data-timeframe="1W">1W</button>
 
-                <h3>Market Overview</h3>
+        <div class="toolbar-space"></div>
 
-                <div class="stats">
+        <button id="emaToggle">EMA</button>
+        <button id="smaToggle">SMA</button>
 
-                    <div>
-                        <span>Open</span>
-                        <strong>$66,890</strong>
-                    </div>
+    </div>
 
-                    <div>
-                        <span>High</span>
-                        <strong>$67,840</strong>
-                    </div>
+    <section class="chart-container">
+        <div id="chart"></div>
+    </section>
 
-                    <div>
-                        <span>Low</span>
-                        <strong>$66,420</strong>
-                    </div>
+    <section class="indicator-panel">
 
-                    <div>
-                        <span>Volume</span>
-                        <strong>24.8K</strong>
-                    </div>
+        <div class="indicator-title">
+            <strong>RSI (14)</strong>
+            <span id="rsiValue">--</span>
+        </div>
 
+        <div id="rsiChart"></div>
+
+    </section>
+
+    <section class="indicator-panel">
+
+        <div class="indicator-title">
+            <strong>MACD (12, 26, 9)</strong>
+            <span id="macdValue">--</span>
+        </div>
+
+        <div id="macdChart"></div>
+
+    </section>
+
+    <section class="bottom-panel">
+
+        <div class="panel-card">
+
+            <h3>Market Overview</h3>
+
+            <div class="stats">
+
+                <div>
+                    <span>Open</span>
+                    <strong id="openValue">--</strong>
+                </div>
+
+                <div>
+                    <span>High</span>
+                    <strong id="highValue">--</strong>
+                </div>
+
+                <div>
+                    <span>Low</span>
+                    <strong id="lowValue">--</strong>
+                </div>
+
+                <div>
+                    <span>Volume</span>
+                    <strong id="volumeValue">--</strong>
                 </div>
 
             </div>
 
-            <div class="panel-card ai-card">
-
-                <div class="ai-title">
-                    <span>🤖</span>
-                    <h3>TradingIQ AI</h3>
-                </div>
-
-                <p>
-                    AI market analysis will appear here.
-                </p>
-
-                <button class="ai-button">
-                    Analyze Market
-                </button>
-
-            </div>
-
-        </section>
-
-    </main>
-
-    <aside class="watchlist">
-
-        <h3>Watchlist</h3>
-
-        <div class="watch-item">
-            <div>
-                <strong>BTC/USD</strong>
-                <small>Bitcoin</small>
-            </div>
-            <span class="positive">+2.34%</span>
         </div>
 
-        <div class="watch-item">
-            <div>
-                <strong>ETH/USD</strong>
-                <small>Ethereum</small>
+        <div class="panel-card ai-card">
+
+            <div class="ai-title">
+                <span>🤖</span>
+                <h3>TradingIQ AI</h3>
             </div>
-            <span class="positive">+1.87%</span>
+
+            <p id="aiMessage">
+                AI market analysis will be added in the next stage.
+            </p>
+
+            <button class="ai-button" id="aiButton">
+                Analyze Market
+            </button>
+
         </div>
 
-        <div class="watch-item">
-            <div>
-                <strong>XAU/USD</strong>
-                <small>Gold</small>
-            </div>
-            <span class="positive">+0.72%</span>
-        </div>
+    </section>
 
-        <div class="watch-item">
-            <div>
-                <strong>EUR/USD</strong>
-                <small>Forex</small>
-            </div>
-            <span class="negative">-0.18%</span>
-        </div>
+</main>
 
-    </aside>
+<aside class="watchlist">
+
+    <h3>Watchlist</h3>
+
+    <button class="watch-item" data-symbol="BTCUSD">
+        <div>
+            <strong>BTC/USD</strong>
+            <small>Bitcoin</small>
+        </div>
+        <span class="positive">+2.34%</span>
+    </button>
+
+    <button class="watch-item" data-symbol="ETHUSD">
+        <div>
+            <strong>ETH/USD</strong>
+            <small>Ethereum</small>
+        </div>
+        <span class="positive">+1.87%</span>
+    </button>
+
+    <button class="watch-item" data-symbol="XAUUSD">
+        <div>
+            <strong>XAU/USD</strong>
+            <small>Gold</small>
+        </div>
+        <span class="positive">+0.72%</span>
+    </button>
+
+    <button class="watch-item" data-symbol="EURUSD">
+        <div>
+            <strong>EUR/USD</strong>
+            <small>Forex</small>
+        </div>
+        <span class="negative">-0.18%</span>
+    </button>
+
+</aside>
 
 </div>
 
