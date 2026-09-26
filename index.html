@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TradingIQ</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <div class="brand">
+        <div class="logo">IQ</div>
+        <span>TradingIQ</span>
+    </div>
+
+    <div class="market-selector">
+        <button>BTC / USD ▾</button>
+    </div>
+
+    <div class="top-actions">
+        <button>🔔</button>
+        <button>⚙️</button>
+        <button class="login">Sign In</button>
+    </div>
+
+</header>
+
+<div class="layout">
+
+    <aside class="sidebar">
+
+        <button class="side-item active">
+            📊
+            <span>Chart</span>
+        </button>
+
+        <button class="side-item">
+            ⭐
+            <span>Watchlist</span>
+        </button>
+
+        <button class="side-item">
+            🔔
+            <span>Alerts</span>
+        </button>
+
+        <button class="side-item">
+            🤖
+            <span>AI</span>
+        </button>
+
+        <button class="side-item">
+            🧪
+            <span>Backtest</span>
+        </button>
+
+        <button class="side-item">
+            💼
+            <span>Portfolio</span>
+        </button>
+
+    </aside>
+
+    <main class="main">
+
+        <div class="market-header">
+
+            <div>
+                <h2>BTC/USD</h2>
+                <span class="market-status">Crypto • Demo Market</span>
+            </div>
+
+            <div class="price">
+                <strong id="price">$67,250.00</strong>
+                <span class="positive">+2.34%</span>
+            </div>
+
+        </div>
+
+        <div class="toolbar">
+
+            <button>1m</button>
+            <button>5m</button>
+            <button class="selected">15m</button>
+            <button>1H</button>
+            <button>4H</button>
+            <button>1D</button>
+            <button>1W</button>
+
+            <div class="toolbar-space"></div>
+
+            <button>Indicators</button>
+            <button>Draw</button>
+
+        </div>
+
+        <section class="chart-container">
+            <div id="chart"></div>
+        </section>
+
+        <section class="bottom-panel">
+
+            <div class="panel-card">
+
+                <h3>Market Overview</h3>
+
+                <div class="stats">
+
+                    <div>
+                        <span>Open</span>
+                        <strong>$66,890</strong>
+                    </div>
+
+                    <div>
+                        <span>High</span>
+                        <strong>$67,840</strong>
+                    </div>
+
+                    <div>
+                        <span>Low</span>
+                        <strong>$66,420</strong>
+                    </div>
+
+                    <div>
+                        <span>Volume</span>
+                        <strong>24.8K</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="panel-card ai-card">
+
+                <div class="ai-title">
+                    <span>🤖</span>
+                    <h3>TradingIQ AI</h3>
+                </div>
+
+                <p>
+                    AI market analysis will appear here.
+                </p>
+
+                <button class="ai-button">
+                    Analyze Market
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <aside class="watchlist">
+
+        <h3>Watchlist</h3>
+
+        <div class="watch-item">
+            <div>
+                <strong>BTC/USD</strong>
+                <small>Bitcoin</small>
+            </div>
+            <span class="positive">+2.34%</span>
+        </div>
+
+        <div class="watch-item">
+            <div>
+                <strong>ETH/USD</strong>
+                <small>Ethereum</small>
+            </div>
+            <span class="positive">+1.87%</span>
+        </div>
+
+        <div class="watch-item">
+            <div>
+                <strong>XAU/USD</strong>
+                <small>Gold</small>
+            </div>
+            <span class="positive">+0.72%</span>
+        </div>
+
+        <div class="watch-item">
+            <div>
+                <strong>EUR/USD</strong>
+                <small>Forex</small>
+            </div>
+            <span class="negative">-0.18%</span>
+        </div>
+
+    </aside>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
