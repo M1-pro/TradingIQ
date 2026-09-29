@@ -21,10 +21,10 @@ jobs:
     - name: Build with Gradle
       run: |
         chmod +x gradlew
-        ./gradlew assembleRelease
+        ./gradlew assembleDebug
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: TradingIQ-Release-APK
-        path: '**/build/outputs/apk/**/*.apk'
+        name: TradingIQ-Debug-APK
+        path: '**/build/outputs/apk/debug/*.apk'
